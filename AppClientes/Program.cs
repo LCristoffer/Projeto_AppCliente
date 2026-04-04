@@ -1,29 +1,82 @@
-﻿namespace AppClientes;
+﻿using Repositorio;
+namespace AppClientes;
 
-class Program
-{
-    static void Main(string[] args)
+    class Program
     {
-        while(true)
+        static ClienteRepositorio _clienteRepositorio  = new ClienteRepositorio();
+        static void Main(string[] args)
         {
-            Menu();
+            while(true)
+            {
+                Menu();
 
-            Console.ReadKey();
+                Console.ReadKey();
+            }
+        }
+
+        static void Menu()
+        {
+            Console.Clear();
+
+            Console.WriteLine("Cadastro de Clientes");
+            Console.WriteLine("--------------------");
+            Console.WriteLine("1 - Cadastrar Cliente");
+            Console.WriteLine("2 - Exibit Clientes");
+            Console.WriteLine("3 - Editar Cliente");
+            Console.WriteLine("4 - Excluir Cliente");
+            Console.WriteLine("5 - Sair");
+            Console.WriteLine("--------------------");
+            EscolherOpcao();
+        }
+        static void EscolherOpcao()
+        {
+            Console.Write("Escolha uma opção: ");
+            var opcao = Console.ReadLine();
+            if(int.TryParse(opcao, out int op) && op > 0 && op <= 5)
+            {
+                switch(op)
+                {
+                    case 1:
+                    {
+                        _clienteRepositorio.CadastrarCliente();
+                        Menu();
+                        break;
+                    }
+                    case 2:
+                    {
+                        _clienteRepositorio.ExibirCliente();
+                        Menu();
+                        break;
+                    }
+                    case 3:
+                    {
+                        _clienteRepositorio.EditarCliente();
+                        Menu();
+                        break;
+                    }
+                    case 4:
+                    {
+                        _clienteRepositorio.ExcluirCliente();
+                        Menu();
+                        break;
+                    }
+                    case 5:
+                    {
+                        Environment.Exit(0);
+                        break;
+                    }
+                    default:
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Opção Inválida!"); 
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine(opcao + " Não é uma Opcão válida!");
+                EscolherOpcao();
+            }
         }
     }
-
-    static void Menu()
-    {
-        Console.Clear();
-
-        Console.WriteLine("Cadastro de Clientes");
-        Console.WriteLine("--------------------");
-        Console.WriteLine("1 - Cadastrar Cliente'");
-        Console.WriteLine("2 - Exibit Clientes");
-        Console.WriteLine("3 - editar Cliente");
-        Console.WriteLine("4 - Excluir Cliente");
-        Console.WriteLine("5 - Sair");
-        Console.WriteLine("--------------------");
-        
-    }
-}

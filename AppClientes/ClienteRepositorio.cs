@@ -122,7 +122,7 @@ namespace Repositorio;
         {
             if(File.Exists("clientes.txt"))
             {
-                var dados = File.ReadAllText("clietens.txt");
+                var dados = File.ReadAllText("clientes.txt");
                 var clientesArquivo = System.Text.Json.JsonSerializer.Deserialize<List<Cliente>>(dados);
                 clientes.AddRange(clientesArquivo);
             }

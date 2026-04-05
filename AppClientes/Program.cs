@@ -1,4 +1,6 @@
-﻿using Repositorio;
+﻿using System.Globalization;
+using Repositorio;
+
 namespace AppClientes;
 
     class Program
@@ -6,6 +8,12 @@ namespace AppClientes;
         static ClienteRepositorio _clienteRepositorio  = new ClienteRepositorio();
         static void Main(string[] args)
         {
+            var cultura = new CultureInfo("pt-BR");
+            Thread.CurrentThread.CurrentCulture = cultura;
+            Thread.CurrentThread.CurrentUICulture = cultura;
+
+            _clienteRepositorio.LerDadosClientes();
+
             while(true)
             {
                 Menu();
@@ -62,6 +70,7 @@ namespace AppClientes;
                     }
                     case 5:
                     {
+                        _clienteRepositorio.GravarDadosCliente();
                         Environment.Exit(0);
                         break;
                     }

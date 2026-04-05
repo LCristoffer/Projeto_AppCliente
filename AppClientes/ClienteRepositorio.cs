@@ -113,4 +113,18 @@ namespace Repositorio;
 
         Console.ReadKey();
         }
+        public void GravarDadosCliente()
+        {
+            var json = System.Text.Json.JsonSerializer.Serialize(clientes);
+            File.WriteAllText("clientes.txt", json);
+        }
+        public void LerDadosClientes()
+        {
+            if(File.Exists("clientes.txt"))
+            {
+                var dados = File.ReadAllText("clietens.txt");
+                var clientesArquivo = System.Text.Json.JsonSerializer.Deserialize<List<Cliente>>(dados);
+                clientes.AddRange(clientesArquivo);
+            }
+        }
     }

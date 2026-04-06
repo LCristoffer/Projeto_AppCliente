@@ -32,7 +32,8 @@ namespace AppClientes;
             Console.WriteLine("2 - Exibit Clientes");
             Console.WriteLine("3 - Editar Cliente");
             Console.WriteLine("4 - Excluir Cliente");
-            Console.WriteLine("5 - Sair");
+            Console.WriteLine("5 - Gravar dados Cadastrados");
+            Console.WriteLine("6 - Sair");
             Console.WriteLine("--------------------");
             EscolherOpcao();
         }
@@ -40,7 +41,7 @@ namespace AppClientes;
         {
             Console.Write("Escolha uma opção: ");
             var opcao = Console.ReadLine();
-            if(int.TryParse(opcao, out int op) && op > 0 && op <= 5)
+            if(int.TryParse(opcao, out int op) && op > 0 && op <= 6)
             {
                 switch(op)
                 {
@@ -69,6 +70,14 @@ namespace AppClientes;
                         break;
                     }
                     case 5:
+                    {
+                        _clienteRepositorio.GravarDadosCliente();
+                        Console.WriteLine("Dados gravados com sucesso! [Enter]");
+                        Console.ReadKey();
+                        Menu();
+                        break;
+                    }
+                    case 6:
                     {
                         _clienteRepositorio.GravarDadosCliente();
                         Environment.Exit(0);
